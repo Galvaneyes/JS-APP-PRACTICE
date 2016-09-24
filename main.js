@@ -1,39 +1,41 @@
 window.onload = function() {
-	var url = "https://restcountries.eu/rest/v1/all";
+	var baseUrl = 'https://restcountries.eu/';
+    var endPoint = 'rest/v1/all';
+    var allTowns = [];
+    printText();
 
 	function printText() {
-		getAllTowns(printTowns);
+        if (allTowns.length === 0) {
+            getAllTowns(saveData).done(printTowns);
+        }
+
+        printTowns(allTowns);
 	}
 
-    function getAllTowns(success) {
-        $.ajax({
-            method: "GET",
-            url: url,
-            success: success
-        });
+    function saveData(data) {
+        for (var town in data) {
+            allTowns.push(data[town].name);
+        }        
     }
 
-	function printTowns (data) {
-		var startsWith = $('#search').val();
-		var towns = [];
+    function getAllTowns(success) {
+        var promise = $.get(baseUrl + endPoint);
 
-		for (var town in data) {
-			towns.push(data[town].name);
-		}
+        return promise.done(success);
+    }
+
+	function printTowns () {
+		var startsWith = $('#search').val();
+
 		var townsToDisplay = [];
-		for (var i = 0; i < towns.length; i++) {
-			if (town.toLowerCase().substring(0, startsWith.length) == startsWith.toLowerCase()) {
-				townsToDisplay.push(towns[i]);
+		for (var i = 0; i < allTowns.length; i++) {
+			if (allTowns[i].toLowerCase().substring(0, startsWith.length) == startsWith.toLowerCase()) {
+				townsToDisplay.push(allTowns[i]);
 			}
 		}
 
-		console.log(townsToDisplay);
-
-		townsToDisplay.forEach((x) => $('#inputText').append(x));
-	}
-
-	function getData(data) {
-		$.get(url, data, success);
+        $('#inputText').empty();
+		townsToDisplay.forEach((x) => $('#inputText').append(x + ' '));
 	}
 
 	$('#search').on('input', printText);
