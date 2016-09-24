@@ -1,0 +1,27 @@
+{
+	"towns": [{
+		"name": "Sofia",
+		"id": "1"
+	}, {
+		"name": "Plovdiv",
+		"id": "2"
+	}, {
+		"name": "Bourgas",
+		"id": "3"
+	}, {
+		"name": "Varna",
+		"id": "4"
+	}, {
+		"name": "Pleven",
+		"id": "5"
+	}, {
+		"name": "Rouse",
+		"id": "6"
+	}, {
+		"name": "Vidin",
+		"id": "7"
+	}, {
+		"name": "Kaspichan",
+		"id": "8"
+	}]
+}
