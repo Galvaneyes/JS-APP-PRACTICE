@@ -1,13 +1,13 @@
-'use strict'
-function solver() {
-    console.log('asjdkjasd');
+// 'use strict'
+// function solver() {
+//     console.log('asjdkjasd');
     
-    function sum(a,b) {
-        return a + b;
-    }
+//     function sum(a,b) {
+//         return a + b;
+//     }
     
-    console.log(sum(10,42));
+//     console.log(sum(10,42));
     
-}
+// }
 
-let text = solver();
+// let text = solver();
