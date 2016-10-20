@@ -1,16 +1,16 @@
 window.onload = function() {
-	var baseUrl = 'https://restcountries.eu/';
+    var baseUrl = 'https://restcountries.eu/';
     var endPoint = 'rest/v1/all';
     var allTowns = [];
     printText();
 
-	function printText() {
+    function printText() {
         if (allTowns.length === 0) {
             getAllTowns(saveData).done(printTowns);
         }
 
         printTowns(allTowns);
-	}
+    }
 
     function saveData(data) {
         for (var town in data) {
@@ -24,19 +24,28 @@ window.onload = function() {
         return promise.done(success);
     }
 
-	function printTowns () {
-		var startsWith = $('#search').val();
+    function printTowns () {
+        var startsWith = $('#search').val();
 
-		var townsToDisplay = [];
-		for (var i = 0; i < allTowns.length; i++) {
-			if (allTowns[i].toLowerCase().substring(0, startsWith.length) == startsWith.toLowerCase()) {
-				townsToDisplay.push(allTowns[i]);
-			}
-		}
+        var townsToDisplay = [];
+        for (var i = 0; i < allTowns.length; i++) {
+            if (allTowns[i].toLowerCase().substring(0, startsWith.length) == startsWith.toLowerCase()) {
+                townsToDisplay.push(allTowns[i]);
+            }
+        }
 
         $('#inputText').empty();
-		townsToDisplay.forEach((x) => $('#inputText').append(x + ' '));
-	}
+        townsToDisplay.forEach(design);
+    }
+
+    function design(item) {
+
+        let element = `<div>${item}</div>`;
+
+        $('body').append(element);
+        $('div').css('background-color', 'red');
+
+    }
 
 	$('#search').on('input', printText);
 };
